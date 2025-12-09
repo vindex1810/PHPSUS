@@ -14,7 +14,7 @@ $user = $auth->requireAuth();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen relative text-white">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/profissionais-saude.jpg')">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./assets/profissionais-saude.jpg')">
         <div class="absolute inset-0 bg-blue-900/70 backdrop-blur-[0.5px]"></div>
     </div>
 
@@ -23,7 +23,7 @@ $user = $auth->requireAuth();
             <div class="container mx-auto px-4 py-4">
                 <nav class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <img src="/assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-12 w-auto">
+                        <img src="./assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-12 w-auto">
                     </div>
 
                     <div class="flex items-center space-x-4">
@@ -168,7 +168,7 @@ $user = $auth->requireAuth();
             <div class="container mx-auto px-4 py-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                     <div class="flex items-start space-x-4 mb-4 md:mb-0">
-                        <img src="/assets/sems-logo.png" alt="SEMS" class="h-12 w-auto">
+                        <img src="./assets/sems-logo.png" alt="SEMS" class="h-12 w-auto">
                         <div class="text-left">
                             <p class="text-blue-200 text-sm">© 2025 SUS Connect - Sistema de Monitoramento da Saúde</p>
                             <p class="text-blue-300 text-xs mt-1">Prefeitura Municipal de Dourados/MS</p>
