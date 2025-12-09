@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen relative text-white flex items-center justify-center">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./assets/profissionais-saude.jpg')">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/profissionais-saude.jpg')">
         <div class="absolute inset-0 bg-blue-900/70 backdrop-blur-[0.5px]"></div>
     </div>
 
     <div class="relative z-10 w-full max-w-md px-4">
         <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-8 text-center">
-                <img src="./assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-16 w-auto mx-auto mb-4">
+                <img src="/assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-16 w-auto mx-auto mb-4">
                 <h1 class="text-3xl font-bold mb-2">SUS Connect</h1>
                 <p class="text-blue-100 text-sm">Sistema de Monitoramento da Saúde</p>
             </div>

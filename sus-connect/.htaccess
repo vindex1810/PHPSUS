@@ -1,0 +1,43 @@
+RewriteEngine On
+
+# Redirecionar HTTP para HTTPS (opcional, descomente se usar HTTPS)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remover extensão .php das URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Página inicial
+DirectoryIndex index.php
+
+# Proteção de arquivos sensíveis
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Proteção do arquivo de configuração
+<Files "Database.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Headers de segurança
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevenir listagem de diretórios
+Options -Indexes
+
+# Definir timezone
+php_value date.timezone "America/Campo_Grande"
+
+# Configurações de sessão
+php_value session.cookie_httponly 1
+php_value session.use_only_cookies 1
