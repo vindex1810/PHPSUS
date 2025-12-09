@@ -1,0 +1,17 @@
+{
+  "name": "susconnect",
+  "version": "1.0.0",
+  "description": "SUS Connect - Sistema de Monitoramento da Saúde",
+  "private": true,
+  "scripts": {
+    "build": "echo 'PHP project - no build required'",
+    "start": "echo 'Deploy PHP project to XAMPP'"
+  },
+  "keywords": [
+    "sus",
+    "health",
+    "monitoring"
+  ],
+  "author": "Prefeitura de Dourados",
+  "license": "MIT"
+}
