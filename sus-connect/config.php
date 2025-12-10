@@ -70,10 +70,8 @@ function isLoggedIn() {
 function fazerLogin($username, $password) {
     // Credenciais de teste - depois substitua por verificação no banco
     $usuarios_validos = [
-        'admin' => '123456',
-        'sems' => 'sems2024',
-        'usuario' => 'senha123'
-    ];
+        'admin@dourados.ms.gov.br' => '123456',
+     ];
     
     if (isset($usuarios_validos[$username]) && $usuarios_validos[$username] === $password) {
         session_start();
