@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/config.php';
 
-$auth = new Auth();
-$user = $auth->requireAuth();
+requireLogin();
+$username = $_SESSION['nome_usuario'] ?? 'Usuário';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -14,7 +14,7 @@ $user = $auth->requireAuth();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen relative text-white">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/profissionais-saude.jpg')">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./assets/profissionais-saude.jpg')">
         <div class="absolute inset-0 bg-blue-900/70 backdrop-blur-[0.5px]"></div>
     </div>
 
@@ -23,21 +23,21 @@ $user = $auth->requireAuth();
             <div class="container mx-auto px-4 py-4">
                 <nav class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <img src="/assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-12 w-auto">
+                        <img src="./assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-12 w-auto">
                     </div>
 
                     <div class="flex items-center space-x-4">
                         <div class="flex items-center space-x-3">
                             <div class="flex items-center space-x-2 text-blue-100">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
-                                <span class="text-sm font-medium"><?php echo explode('@', htmlspecialchars($user['email']))[0]; ?></span>
+                                <span class="text-sm font-medium"><?php echo htmlspecialchars($username); ?></span>
                             </div>
 
                             <div class="w-px h-6 bg-blue-400/50"></div>
 
-                            <a href="/logout.php" class="flex items-center space-x-2 bg-red-600/80 hover:bg-red-700/80 px-3 py-2 rounded-lg transition-colors duration-200 backdrop-blur-sm">
+                            <a href="./logout.php" class="flex items-center space-x-2 bg-red-600/80 hover:bg-red-700/80 px-3 py-2 rounded-lg transition-colors duration-200 backdrop-blur-sm">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                 </svg>
@@ -168,7 +168,7 @@ $user = $auth->requireAuth();
             <div class="container mx-auto px-4 py-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                     <div class="flex items-start space-x-4 mb-4 md:mb-0">
-                        <img src="/assets/sems-logo.png" alt="SEMS" class="h-12 w-auto">
+                        <img src="./assets/sems-logo.png" alt="SEMS" class="h-12 w-auto">
                         <div class="text-left">
                             <p class="text-blue-200 text-sm">© 2025 SUS Connect - Sistema de Monitoramento da Saúde</p>
                             <p class="text-blue-300 text-xs mt-1">Prefeitura Municipal de Dourados/MS</p>

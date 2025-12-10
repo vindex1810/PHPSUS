@@ -1,29 +1,22 @@
 <?php
 session_start();
-require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/config.php';
 
-if (isset($_COOKIE['session_token'])) {
-    $auth = new Auth();
-    if ($auth->validateSession($_COOKIE['session_token'])) {
-        header('Location: /dashboard.php');
-        exit();
-    }
+if (isLoggedIn()) {
+    header('Location: ./dashboard.php');
+    exit();
 }
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
+    $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    $auth = new Auth();
-    $result = $auth->login($email, $password);
-
-    if ($result['success']) {
-        setcookie('session_token', $result['session_token'], time() + 86400, '/');
-        header('Location: /dashboard.php');
+    if (fazerLogin($username, $password)) {
+        header('Location: ./dashboard.php');
         exit();
     } else {
-        $error = $result['message'];
+        $error = 'Credenciais inválidas. Tente novamente.';
     }
 }
 ?>
@@ -36,14 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen relative text-white flex items-center justify-center">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/profissionais-saude.jpg')">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('./assets/profissionais-saude.jpg')">
         <div class="absolute inset-0 bg-blue-900/70 backdrop-blur-[0.5px]"></div>
     </div>
 
     <div class="relative z-10 w-full max-w-md px-4">
         <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-8 text-center">
-                <img src="/assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-16 w-auto mx-auto mb-4">
+                <img src="./assets/prefeitura_negativo.png" alt="Prefeitura de Dourados" class="h-16 w-auto mx-auto mb-4">
                 <h1 class="text-3xl font-bold mb-2">SUS Connect</h1>
                 <p class="text-blue-100 text-sm">Sistema de Monitoramento da Saúde</p>
             </div>
@@ -59,12 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
 
                 <div class="space-y-2">
-                    <label class="text-sm font-medium text-white">Email</label>
+                    <label class="text-sm font-medium text-white">Usuário</label>
                     <div class="relative">
                         <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
-                        <input type="email" name="email" required class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-white placeholder-blue-200" placeholder="Digite seu email">
+                        <input type="text" name="email" required class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-white placeholder-blue-200" placeholder="Digite seu usuário">
                     </div>
                 </div>
 
